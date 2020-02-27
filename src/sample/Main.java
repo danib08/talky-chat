@@ -12,8 +12,10 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("Talky Chat");
-        primaryStage.setScene(new Scene(root, 650, 500));
+        primaryStage.setScene(new Scene(root, 650, 400));
+        primaryStage.setResizable(false);
         primaryStage.show();
+
     }
 
 
