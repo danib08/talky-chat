@@ -44,7 +44,7 @@ public class Controller {
             stage.show();
 
         } catch (IOException e) {
-            System.out.println("An error ocurred while trying to load new window: " + e.getMessage());
+            System.out.println("An error occurred while trying to load new window: " + e.getMessage());
         }
     }
 }
