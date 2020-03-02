@@ -4,13 +4,13 @@ import java.io.*;
 import java.net.Socket;
 import java.util.Scanner;
 
-public class Client {
+public class ClientBeta {
     Socket client;
     DataInputStream input;
     DataOutputStream output;
     boolean flag = true;
 
-    public Client(String ipAddress, int port) {
+    public ClientBeta(String ipAddress, int port) {
         try {
             client = new Socket(ipAddress, port);
             System.out.println("Connected successfully");
@@ -47,6 +47,6 @@ public class Client {
         System.out.println("Please enter a port:");
         int portEntered = scanner.nextInt();
 
-        Client newClient = new Client(addressEntered, portEntered);
+        ClientBeta newClient = new ClientBeta(addressEntered, portEntered);
     }
 }
