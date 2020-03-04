@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="288.0" prefWidth="373.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.Controller">
+  <children>
+    <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+         <children>
+            <Label alignment="CENTER" layoutX="74.0" layoutY="34.0" prefHeight="18.0" prefWidth="226.0" text="Welcome to Talky Chat!">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="31.0" layoutY="104.0" prefHeight="19.0" prefWidth="126.0" text="Choose a username:">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <TextField fx:id="usernameInput" layoutX="180.0" layoutY="101.0" prefHeight="0.0" prefWidth="148.0" />
+            <Label layoutX="31.0" layoutY="144.0" prefHeight="19.0" prefWidth="126.0" text="Enter an IP Address:">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <TextField fx:id="ipAddressInput" layoutX="180.0" layoutY="141.0" prefHeight="0.0" prefWidth="148.0" />
+            <Label layoutX="31.0" layoutY="188.0" prefHeight="19.0" prefWidth="126.0" text="Enter a port:">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <TextField fx:id="portInput" layoutX="180.0" layoutY="185.0" prefHeight="0.0" prefWidth="148.0" />
+            <Button layoutX="139.0" layoutY="233.0" mnemonicParsing="false" onAction="#connect" prefHeight="26.0" prefWidth="95.0" text="Connect">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Button>
+         </children>
+    </AnchorPane>
+  </children>
+</VBox>

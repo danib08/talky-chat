@@ -1,5 +1,6 @@
 package sockets;
 
+import gui.Controller.MessageChecker;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -22,26 +23,30 @@ public class Client {
             } catch (IOException e) {
                 System.out.println("An error occurred while trying to connect to the server: " + e.getMessage());
             }
-        this.sendMessage();
-        this.receiveMessage();
+        //this.receiveMessage();
     }
 
-    public void sendMessage() {
+    /*public void sendMessage(MessageChecker checker) {
         Thread send = new Thread(){
-            public void run() {
-                while (true) {
-                    String message = msgScanner.nextLine();
-                     try {
-                         output.writeUTF(message);
-
-                     } catch (IOException i) {
-                         System.out.println("An error occurred while trying to send a message: " + i.getMessage());
-                     }
+        public void run() {
+            String message;
+            while (true) {
+                if (!checker.isMessageEmpty()) {
+                    message = checker.getMessage();
+                    System.out.println(message);
                 }
-            }
-        };
-        send.start();
-    }
+            try {
+                output.writeUTF(message);
+
+            } catch (IOException i) {
+                System.out.println("An error occurred while trying to send a message: " + i.getMessage());
+                }
+                }
+                }
+                };
+            send.start();
+        }*/
+
 
     public void receiveMessage() {
         Thread receive = new Thread(){
@@ -62,14 +67,7 @@ public class Client {
     }
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Please enter an IPAddress:");
-        String ipAddress = scanner.nextLine();
 
-        System.out.println("Please enter a port:");
-        int portEntered = scanner.nextInt();
-
-        Client newClient = new Client(ipAddress, portEntered);
     }
 
 }

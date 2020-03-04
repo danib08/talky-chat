@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Server {
 
@@ -15,8 +14,6 @@ public class Server {
     DataInputStream in;
     DataOutputStream out;
     public ArrayList<ClientThread> listOfClients;
-    int i = 0;
-
 
     public Server(int port) {
         this.listOfClients = new ArrayList<>();
@@ -32,29 +29,19 @@ public class Server {
                 in = new DataInputStream(socket.getInputStream());
                 out = new DataOutputStream(socket.getOutputStream());
 
+                String tempUsername = Integer.toString(socket.getPort());
+
                 System.out.println("Assigning thread to client...");
-                ClientThread newClientThread = new ClientThread(this, socket, i, in, out);
+                ClientThread newClientThread = new ClientThread(this, socket, tempUsername, in, out);
 
                 System.out.println("Adding this client to active client list");
                 listOfClients.add(newClientThread);
 
                 System.out.println("Client connected succesfully");
                 newClientThread.start();
-
-                i++;
             }
         } catch (IOException e) {
             System.out.println("An error occurred while trying to start the server: " + e.getMessage());
         }
-    }
-
-
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Please enter a port:");
-        int portEntered = scanner.nextInt();
-
-        Server newServer = new Server(portEntered);
-
     }
 }
