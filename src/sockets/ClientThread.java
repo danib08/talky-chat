@@ -40,13 +40,10 @@ public class ClientThread extends Thread {
                 StringTokenizer string = new StringTokenizer(message, "$");
                 String send = string.nextToken();
                 String receiver = string.nextToken();
-                System.out.println(send);
-                System.out.println(receiver);
 
                 for (ClientThread client : this.server.listOfClients) {
-                    //System.out.println(client.username);
                     if (client.username.equals(receiver) && client.isLoggedIn) {
-                        client.output.writeUTF(this.username + ": " + send);
+                        client.output.writeUTF("They: " + send);
                     }
                 }
 

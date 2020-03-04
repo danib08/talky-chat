@@ -11,7 +11,7 @@
     <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
          <children>
             <TextField fx:id="messageField" layoutX="21.0" layoutY="320.0" prefHeight="39.0" prefWidth="500.0" promptText="Write you message here..." />
-            <Button layoutX="532.0" layoutY="320.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="94.0" text="Send" textAlignment="CENTER" textFill="#261212" />
+            <Button layoutX="532.0" layoutY="320.0" mnemonicParsing="false" onAction="#sendMessage" prefHeight="39.0" prefWidth="94.0" text="Send" textAlignment="CENTER" textFill="#261212" />
             <TextArea fx:id="textArea" layoutX="21.0" layoutY="14.0" prefHeight="295.0" prefWidth="500.0" />
          </children>
     </AnchorPane>

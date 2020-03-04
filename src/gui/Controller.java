@@ -23,11 +23,18 @@ public class Controller {
     @FXML
     TextArea textArea;
 
+    public String username;
+    public String ipAddress;
+    public String portString;
+    public int port;
+
+    public static Client newClient;
+
     @FXML
     public void connect() {
-        String username = usernameInput.getText();
-        String ipAddress = ipAddressInput.getText();
-        String portString = portInput.getText();
+        username = usernameInput.getText();
+        ipAddress = ipAddressInput.getText();
+        portString = portInput.getText();
 
         boolean isInt = true;
         try {
@@ -39,11 +46,9 @@ public class Controller {
         if ((username.isEmpty() || ipAddress.isEmpty() || !isInt)) {
             System.out.println("Please enter correct values for all of the fields");
         } else {
-            int port = Integer.parseInt(portString);
+            port = Integer.parseInt(portString);
 
-            Client newClient = new Client(ipAddress, port);
-            MessageChecker msgChecker = new MessageChecker(newClient);
-
+            newClient = new Client(ipAddress, port);
 
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ChatWindow.fxml"));
             try {
@@ -60,28 +65,17 @@ public class Controller {
         }
     }
 
-    public class MessageChecker {
-
-        Client newClient;
-
-        public MessageChecker(Client newClient) {
-            this.newClient = newClient;
+    public void sendMessage() {
+        String message;
+        if (!messageField.getText().equals("")) {
+            message = messageField.getText();
+            messageField.clear();
+            textArea.appendText("You: " + message);
+            newClient.sendMessage(message);
         }
+    }
 
-        public Boolean isMessageEmpty() {
-            boolean isEmpty = false;
-            String string = messageField.getText();
-            if (!string.equals("")) {
-                isEmpty = true;
-            }
-            System.out.println(isEmpty);
-            return isEmpty;
-        }
-
-        public String getMessage() {
-            String message = messageField.getText();
-            System.out.println(message);
-            return message;
-        }
+    public void showIncoming(String message) {
+        textArea.appendText(message);
     }
 }
