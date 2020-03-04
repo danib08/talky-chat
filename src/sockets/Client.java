@@ -9,8 +9,10 @@ public class Client {
     Socket client;
     DataInputStream input;
     DataOutputStream output;
+    String username;
 
-    public Client(String ipAddress, int port) {
+    public Client(String ipAddress, int port, String username) {
+        this.username = username;
             try {
                 client = new Socket(ipAddress, port);
                 System.out.println("Succesfully connected to the server");

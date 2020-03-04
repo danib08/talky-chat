@@ -14,10 +14,10 @@ public class ClientThread extends Thread {
     String username;
     boolean isLoggedIn;
 
-    public ClientThread(Server server, Socket clientSocket, String username, DataInputStream input, DataOutputStream output) {
+    public ClientThread(Server server, Socket clientSocket, DataInputStream input, DataOutputStream output) {
         this.server = server;
         this.clientSocket = clientSocket;
-        this.username = username;
+        this.username = null;
         this.input = input;
         this.output = output;
         this.isLoggedIn = true;
@@ -37,13 +37,19 @@ public class ClientThread extends Thread {
                     break;
                 }
 
-                StringTokenizer string = new StringTokenizer(message, "$");
-                String send = string.nextToken();
-                String receiver = string.nextToken();
+                else if (message.substring(0,1).equals("±")) {
+                    this.username = message.substring(1);
+                }
 
-                for (ClientThread client : this.server.listOfClients) {
-                    if (client.username.equals(receiver) && client.isLoggedIn) {
-                        client.output.writeUTF("They: " + send);
+                else {
+                    StringTokenizer string = new StringTokenizer(message, "$");
+                    String send = string.nextToken();
+                    String receiver = string.nextToken();
+
+                    for (ClientThread client : this.server.listOfClients) {
+                        if (client.username.equals(receiver) && client.isLoggedIn) {
+                            client.output.writeUTF("ellos: " + send);
+                        }
                     }
                 }
 

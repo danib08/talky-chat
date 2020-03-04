@@ -29,10 +29,8 @@ public class Server {
                 in = new DataInputStream(socket.getInputStream());
                 out = new DataOutputStream(socket.getOutputStream());
 
-                String tempUsername = Integer.toString(socket.getPort());
-
                 System.out.println("Assigning thread to client...");
-                ClientThread newClientThread = new ClientThread(this, socket, tempUsername, in, out);
+                ClientThread newClientThread = new ClientThread(this, socket, in, out);
 
                 System.out.println("Adding this client to active client list");
                 listOfClients.add(newClientThread);

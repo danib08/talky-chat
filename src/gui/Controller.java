@@ -8,10 +8,10 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import sockets.Client;
-
 import java.io.IOException;
 
 public class Controller {
+
     @FXML
     TextField usernameInput;
     @FXML
@@ -48,7 +48,9 @@ public class Controller {
         } else {
             port = Integer.parseInt(portString);
 
-            newClient = new Client(ipAddress, port);
+            newClient = new Client(ipAddress, port, username);
+            String newUser = "±" + username;
+            this.sendUsername(newUser);
 
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ChatWindow.fxml"));
             try {
@@ -63,6 +65,10 @@ public class Controller {
                 System.out.println("An error occurred while trying to load new window: " + e.getMessage());
             }
         }
+    }
+
+    public void sendUsername(String username) {
+        newClient.sendMessage(username);
     }
 
     public void sendMessage() {

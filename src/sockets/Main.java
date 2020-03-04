@@ -22,7 +22,6 @@ public class Main {
         if (isValid) {
             int portEntered = Integer.parseInt(portString);
             Server newServer = new Server(portEntered);
+            }
         }
     }
-
-}
