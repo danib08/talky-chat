@@ -7,10 +7,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import sockets.Client;
+import sockets.Client;    // se aplica modularidad ya que se importa una clase de uno de los paquetes creados
 import java.io.IOException;
 
-public class Controller {
+/**
+ * This class is mostly in charge of the GUI logic
+ */
+public class Controller { // se crea la clase Controller
 
     @FXML
     TextField usernameInput;
@@ -30,8 +33,11 @@ public class Controller {
 
     public static Client newClient;
 
+    /**
+     * This method is in charge to create a new client each time the log in button is pressed
+     */
     @FXML
-    public void connect() {
+    public void connect() { // Se crea el metodo connect() de la clase Controller
         username = usernameInput.getText();
         ipAddress = ipAddressInput.getText();
         portString = portInput.getText();
@@ -48,7 +54,7 @@ public class Controller {
         } else {
             port = Integer.parseInt(portString);
 
-            newClient = new Client(ipAddress, port, username);
+            newClient = new Client(ipAddress, port, username); // Instancacion ya que se crea un objeto Client
             String newUser = "±" + username;
             this.sendUsername(newUser);
 
@@ -67,10 +73,17 @@ public class Controller {
         }
     }
 
+    /**
+     * Calls the Client class method sendMessage() to send the client username to the server
+     * @param username identifies the new client
+     */
     public void sendUsername(String username) {
         newClient.sendMessage(username);
     }
 
+    /**
+     * Sends a message to another client (using the server as medium)
+     */
     public void sendMessage() {
         String message;
         if (!messageField.getText().equals("")) {
@@ -79,9 +92,5 @@ public class Controller {
             textArea.appendText("You: " + message);
             newClient.sendMessage(message);
         }
-    }
-
-    public void showIncoming(String message) {
-        textArea.appendText(message);
     }
 }

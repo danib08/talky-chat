@@ -7,16 +7,29 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
-public class Server {
+/**
+ * Manages the creation of a server and it's clients connection
+ * @author Daniela Brenes
+ */
+public class Server {  // Aqui se crea una clase Server
 
-    ServerSocket server;
-    Socket socket;
-    DataInputStream in;
-    DataOutputStream out;
+    // Aqui se aplica encapsulamiento al usar la palabra reservada private
+    private ServerSocket server;
+    private Socket socket;
+    private DataInputStream in;
+    private DataOutputStream out;
+
+    /**
+     * ArrayList containing all ClientThreads associated with each client
+     */
     public ArrayList<ClientThread> listOfClients;
 
+    /**
+     * Creates a Server on the desired port and accepts incoming clients
+     * @param port The port where the socket will be created
+     */
     public Server(int port) {
-        this.listOfClients = new ArrayList<>();
+        this.listOfClients = new ArrayList<>();  // Este es un atributo de la clase Server
 
         try {
             server = new ServerSocket(port);
@@ -30,6 +43,8 @@ public class Server {
                 out = new DataOutputStream(socket.getOutputStream());
 
                 System.out.println("Assigning thread to client...");
+
+                // Aqui hay instanciacion, ya que se crea un nuevo objeto ClientThread
                 ClientThread newClientThread = new ClientThread(this, socket, in, out);
 
                 System.out.println("Adding this client to active client list");

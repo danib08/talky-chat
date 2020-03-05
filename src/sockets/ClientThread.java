@@ -6,14 +6,25 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.StringTokenizer;
 
-public class ClientThread extends Thread {
+/**
+ * Thread that manages all client communication on the server's side
+ * @author DanielaBrenes
+ */
+public class ClientThread extends Thread { // Aqui se crea una clase ClientThread y se hereda de la clase Thread
+    DataOutputStream output;   //Aqui se tienen algunos atributos de la clase ClientThread
     DataInputStream input;
-    DataOutputStream output;
     Socket clientSocket;
     Server server;
     String username;
     boolean isLoggedIn;
 
+    /**
+     * Creates a ClientThread object
+     * @param server server where the clients are connected
+     * @param clientSocket socket obtained by the server from the clients
+     * @param input represents data input values to receive messages from clients
+     * @param output represents data output values to send messages to the clients
+     */
     public ClientThread(Server server, Socket clientSocket, DataInputStream input, DataOutputStream output) {
         this.server = server;
         this.clientSocket = clientSocket;
@@ -23,7 +34,10 @@ public class ClientThread extends Thread {
         this.isLoggedIn = true;
     }
 
-    @Override
+    /**
+     * Checks for username information from the client and also manages message sending to another client
+     */
+    @Override       // Aqui se hace sobreescritura sobre un metodo de la clase Thread
     public void run() {
         String message;
 
@@ -48,7 +62,7 @@ public class ClientThread extends Thread {
 
                     for (ClientThread client : this.server.listOfClients) {
                         if (client.username.equals(receiver) && client.isLoggedIn) {
-                            client.output.writeUTF("ellos: " + send);
+                            client.output.writeUTF("They: " + send);
                         }
                     }
                 }

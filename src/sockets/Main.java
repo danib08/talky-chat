@@ -1,10 +1,23 @@
+/*
+--------------------------------------- Code References ----------------------------------------
+ * Up next, the links of several code examples of Threading and Sockets provided by the tutor of
+ * CE1103. This project tooks inspiration from said code.
+ * https://www.geeksforgeeks.org/socket-programming-in-java/
+ * https://www.geeksforgeeks.org/introducing-threads-socket-programming-java/
+ * http://journals.ecs.soton.ac.uk/java/tutorial/java/threads/simple.html
+ */
+
 package sockets;
 
 import java.util.Scanner;
 
-public class Main {
+/**
+ * Runs the server
+ * @author Daniela Brenes
+ */
+public class Main {      //Aqui se crea una clase Maib
 
-    public static void main(String[] args) {
+    public static void main(String[] args) {   // Aqui se crea el metodo main(String[] args)
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("----- Server creation -----");
@@ -21,7 +34,7 @@ public class Main {
 
         if (isValid) {
             int portEntered = Integer.parseInt(portString);
-            Server newServer = new Server(portEntered);
+            Server newServer = new Server(portEntered);     // Aqui se aplica instanciacion al crear un objeto Server
             }
         }
     }
